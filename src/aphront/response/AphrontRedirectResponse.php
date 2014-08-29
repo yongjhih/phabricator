@@ -113,7 +113,7 @@ class AphrontRedirectResponse extends AphrontResponse {
    */
   public static function getURIForRedirect($uri, $is_external) {
     $uri_object = new PhutilURI($uri);
-    if ($is_external) {
+    if ($is_external || strlen($uri_object->getDomain())) { // workaround
       // If this is a remote resource it must have a domain set. This
       // would also be caught below, but testing for it explicitly first allows
       // us to raise a better error message.
